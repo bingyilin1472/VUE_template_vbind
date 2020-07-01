@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Basics</title>
+    <!-- development version, includes helpful console warnings
+         從https://vuejs.org/v2/guide/ ，vue documentation取得
+         development version，上線要用production ver才會輕巧且不會有console warnings
+     -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <style>
+        .one{
+            color: green;
+        }
+        .two{
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vue Basics</h1>
+    <!--  這不會作用因為outside of the scope of what VUE is controlling  -->
+    {{ title }}
+
+    <div id="app">
+        <!--  {{ }}為Vue template syntax 跟大多數模板語言長得很像  -->
+        <!--  title為Vue instance裡面的一個key     -->
+        <h2>{{ title }}</h2>
+
+        <!--  基本上使用同data只是要加上parenthesis圓括號，同js calling func -->
+        <!--  view/html端也可以passing through parameters 帶入參數給method  -->
+        <p>{{ greet('morning') }}</p>
+
+        <!--  這樣無法運做，因為被當成字串string
+              <a href="{{ url }}">Youtube</a>
+             data-binding的方式，將該attr，bind綑綁/綁定於data url上
+             v-bind也是來至於上面讀進來的vue framework提供的
+        -->
+        <a v-bind:href=url>Youtube</a>
+        <!-- 雖然bind的資料是array，會幫你用區隔，形容同時有兩個class
+             ['one', 'two'] -> 'one two'
+        -->
+        <div v-bind:class="classes">Classes from Vue Instance</div>
+        <!--  由於v-bind太常使用了
+              所以官方提供縮寫shortcut用冒號:colon即可代表v-bind
+        -->
+        <input type="text" :value=name>
+    </div>
+
+    <!--  放下面表示要等全部load完畢才執行js control
+          這邊表示說depend on the upper vueJS
+    -->
+    <script src="app.js"></script>
+</body>
+</html>
