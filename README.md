@@ -1,0 +1,1 @@
+# VUE_template_vbind
